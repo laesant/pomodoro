@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 class EntradaTempo extends StatelessWidget {
   final int valor;
   final String titulo;
-  const EntradaTempo({super.key, required this.valor, required this.titulo});
+  final void Function()? inc;
+  final void Function()? dec;
+
+  const EntradaTempo(
+      {super.key,
+      required this.valor,
+      required this.titulo,
+      this.inc,
+      this.dec});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,7 @@ class EntradaTempo extends StatelessWidget {
           children: [
             IconButton.filled(
                 style: IconButton.styleFrom(backgroundColor: Colors.red),
-                onPressed: () {},
+                onPressed: dec,
                 icon: const Icon(Icons.arrow_downward)),
             SizedBox(
               width: 100,
@@ -32,7 +40,7 @@ class EntradaTempo extends StatelessWidget {
             ),
             IconButton.filled(
                 style: IconButton.styleFrom(backgroundColor: Colors.red),
-                onPressed: () {},
+                onPressed: inc,
                 icon: const Icon(Icons.arrow_upward)),
           ],
         ),
