@@ -8,7 +8,35 @@ class EntradaTempo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [Text(titulo), Text(valor.toString())],
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          titulo,
+          style: const TextStyle(fontSize: 25),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton.filled(
+                style: IconButton.styleFrom(backgroundColor: Colors.red),
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_downward)),
+            SizedBox(
+              width: 100,
+              child: Text(
+                "$valor min",
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+            IconButton.filled(
+                style: IconButton.styleFrom(backgroundColor: Colors.red),
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_upward)),
+          ],
+        ),
+      ],
     );
   }
 }
