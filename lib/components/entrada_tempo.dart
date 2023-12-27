@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pomodoro/store/pomodoro.store.dart';
 import 'package:provider/provider.dart';
 
@@ -26,31 +27,35 @@ class EntradaTempo extends StatelessWidget {
           style: const TextStyle(fontSize: 25),
         ),
         const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton.filled(
-                style: IconButton.styleFrom(
-                    backgroundColor:
-                        store.estaTrabalhando ? Colors.red : Colors.green),
-                onPressed: dec,
-                icon: const Icon(Icons.arrow_downward)),
-            SizedBox(
-              width: 100,
-              child: Text(
-                "$valor min",
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 18),
+        Observer(builder: (context) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton.filled(
+                  style: IconButton.styleFrom(
+                      backgroundColor:
+                          store.tipoIntervalo == TipoIntervalo.trabalho
+                              ? Colors.red
+                              : Colors.green),
+                  onPressed: dec,
+                  icon: const Icon(Icons.arrow_downward)),
+              SizedBox(
+                width: 100,
+                child: Text(
+                  "$valor min",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
-            ),
-            IconButton.filled(
-                style: IconButton.styleFrom(
-                    backgroundColor:
-                        store.estaTrabalhando ? Colors.red : Colors.green),
-                onPressed: inc,
-                icon: const Icon(Icons.arrow_upward)),
-          ],
-        ),
+              IconButton.filled(
+                  style: IconButton.styleFrom(
+                      backgroundColor:
+                          store.estaTrabalhando ? Colors.red : Colors.green),
+                  onPressed: inc,
+                  icon: const Icon(Icons.arrow_upward)),
+            ],
+          );
+        }),
       ],
     );
   }
